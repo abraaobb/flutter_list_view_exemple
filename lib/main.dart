@@ -1,3 +1,4 @@
+import 'package:crud_app/provider.dart';
 import 'package:flutter/material.dart';
 
 void main(List<String> args) {
@@ -9,15 +10,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'CRUD APP',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('CRUD APP'),
+    return UserProvider(
+      child: MaterialApp(
+        title: 'CRUD APP',
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text('CRUD APP'),
+          ),
+          body: Text('body'),
         ),
-        body: Text('body'),
+        routes: {},
       ),
-      routes: {},
     );
   }
 }
