@@ -1,4 +1,5 @@
 import 'package:crud_app/provider.dart';
+import 'package:crud_app/user_form.dart';
 import 'package:flutter/material.dart';
 
 void main(List<String> args) {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
           appBar: AppBar(
             title: Text('CRUD APP'),
           ),
-          body: Text('body'),
+          body: UserForm(),
         ),
         routes: {},
       ),
