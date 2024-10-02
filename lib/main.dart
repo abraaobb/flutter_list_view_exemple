@@ -14,13 +14,11 @@ class MyApp extends StatelessWidget {
     return UserProvider(
       child: MaterialApp(
         title: 'CRUD APP',
-        home: Scaffold(
-          appBar: AppBar(
-            title: Text('CRUD APP'),
-          ),
-          body: UserForm(),
-        ),
-        routes: {},
+        theme: ThemeData(),
+        home: UserForm(),
+        routes: {
+          "/create": (_) => UserForm(),
+        },
       ),
     );
   }
