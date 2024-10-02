@@ -4,15 +4,11 @@ import 'package:crud_app/user.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as dev;
 
-class UserForm extends StatefulWidget {
-  const UserForm({super.key});
+class UserView extends StatelessWidget {
+  UserView({super.key});
 
-  @override
-  State<UserForm> createState() => _UserFormState();
-}
+  String title = "Show user";
 
-class _UserFormState extends State<UserForm> {
-  String title = "Create user";
   TextEditingController controllerName = TextEditingController();
   TextEditingController controllerEmail = TextEditingController();
   TextEditingController controllerPassword = TextEditingController();
@@ -28,27 +24,6 @@ class _UserFormState extends State<UserForm> {
       controllerName.text = userProvider.userSelected!.name;
       controllerEmail.text = userProvider.userSelected!.email;
       controllerPassword.text = userProvider.userSelected!.password;
-      setState(
-        () {
-          this.title = "Edit user";
-        },
-      );
-    }
-
-    void save() {
-      User user = User(
-          name: controllerName.text,
-          email: controllerEmail.text,
-          password: controllerPassword.text);
-
-      int usersLength = userProvider.users.length;
-
-      if (index != null) {
-        userProvider.users[index] = user;
-      } else {
-        userProvider.users.insert(usersLength, user);
-      }
-      Navigator.popAndPushNamed(context, '/list');
     }
 
     return Scaffold(
@@ -78,7 +53,7 @@ class _UserFormState extends State<UserForm> {
             SizedBox(
               width: double.infinity,
               child: TextButton(
-                onPressed: save,
+                onPressed: () {},
                 child: Text(
                   'Salvar',
                   style: TextStyle(color: Colors.white),
