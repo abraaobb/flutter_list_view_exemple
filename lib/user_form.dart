@@ -18,18 +18,6 @@ class _UserFormState extends State<UserForm> {
 
   @override
   Widget build(BuildContext context) {
-    save() {
-      UserProvider userProvider = UserProvider.of(context) as UserProvider;
-
-      User user = User(
-          name: controllerName.text,
-          email: controllerEmail.text,
-          password: controllerPassword.text);
-
-      userProvider.users.insert(0, user);
-      dev.log(userProvider.users[0].name);
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Create user'),
@@ -48,7 +36,23 @@ class _UserFormState extends State<UserForm> {
             SizedBox(
               width: double.infinity,
               child: TextButton(
-                onPressed: save(),
+                onPressed: () {
+                  UserProvider userProvider =
+                      UserProvider.of(context) as UserProvider;
+
+                  User user = User(
+                      name: controllerName.text,
+                      email: controllerEmail.text,
+                      password: controllerPassword.text);
+
+                  int usersLength = userProvider.users.length;
+
+                  userProvider.users.insert(usersLength, user);
+
+                  dev.log('entrei $userProvider');
+
+                  Navigator.popAndPushNamed(context, '/list');
+                },
                 child: Text(
                   'Salvar',
                   style: TextStyle(color: Colors.white),
