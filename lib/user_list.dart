@@ -14,13 +14,30 @@ class UserList extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('User list'),
+        leading: BackButton(
+          onPressed: () {
+            Navigator.popAndPushNamed(context, '/create');
+          },
+        ),
       ),
       body: ListView.builder(
           itemCount: usersLength,
           itemBuilder: (BuildContext contextBuilder, indexBuilder) => Container(
                 child: ListTile(
                   title: Text(users[indexBuilder].name),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            Navigator.popAndPushNamed(context, '/create');
+                          },
+                          icon: Icon(Icons.edit))
+                    ],
+                  ),
                 ),
+                decoration: BoxDecoration(
+                    border: Border(bottom: BorderSide(width: 0.8))),
               )),
     );
   }

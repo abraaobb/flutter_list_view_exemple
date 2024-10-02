@@ -21,6 +21,15 @@ class _UserFormState extends State<UserForm> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Create user'),
+        actions: [
+          Container(
+            child: TextButton(
+                onPressed: () {
+                  Navigator.popAndPushNamed(context, '/list');
+                },
+                child: Text('User list')),
+          )
+        ],
       ),
       body: Center(
         child: Column(
