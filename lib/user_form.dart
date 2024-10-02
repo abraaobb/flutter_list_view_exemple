@@ -58,7 +58,7 @@ class _UserFormState extends State<UserForm> {
       } else {
         userProvider.users.insert(usersLength, user);
       }
-      Navigator.popAndPushNamed(context, '/create');
+      Navigator.popAndPushNamed(context, '/list');
     }
 
     return Scaffold(
