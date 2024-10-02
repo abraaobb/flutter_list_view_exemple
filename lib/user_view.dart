@@ -2,7 +2,6 @@ import 'package:crud_app/field_form.dart';
 import 'package:crud_app/user_provider.dart';
 import 'package:crud_app/user.dart';
 import 'package:flutter/material.dart';
-import 'dart:developer' as dev;
 
 class UserView extends StatelessWidget {
   UserView({super.key});
@@ -43,26 +42,50 @@ class UserView extends StatelessWidget {
         child: Column(
           children: [
             FieldForm(
-                label: 'Name', isPassword: false, controller: controllerName),
+                label: 'Name',
+                isPassword: false,
+                controller: controllerName,
+                isForm: false),
             FieldForm(
-                label: 'Email', isPassword: false, controller: controllerEmail),
+                label: 'Email',
+                isPassword: false,
+                controller: controllerEmail,
+                isForm: false),
             FieldForm(
                 label: 'Password',
-                isPassword: true,
-                controller: controllerPassword),
+                isPassword: false,
+                controller: controllerPassword,
+                isForm: false),
             SizedBox(
               width: double.infinity,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.popAndPushNamed(context, '/create');
+                },
                 child: Text(
-                  'Salvar',
+                  'Edit',
                   style: TextStyle(color: Colors.white),
                 ),
                 style: ButtonStyle(
-                    backgroundColor:
-                        WidgetStateProperty.all(Colors.deepPurple)),
+                    backgroundColor: WidgetStateProperty.all(Colors.blue)),
               ),
-            )
+            ),
+            SizedBox(
+              width: double.infinity,
+              child: TextButton(
+                onPressed: () {
+                  userProvider.indexUser = null;
+                  userProvider.users.removeAt(index!);
+                  Navigator.popAndPushNamed(context, '/create');
+                },
+                child: Text(
+                  'Delete',
+                  style: TextStyle(color: Colors.white),
+                ),
+                style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.all(Colors.red)),
+              ),
+            ),
           ],
         ),
       ),
