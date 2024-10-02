@@ -45,17 +45,20 @@ class UserView extends StatelessWidget {
                 label: 'Name',
                 isPassword: false,
                 controller: controllerName,
-                isForm: false),
+                isForm: false,
+                isEmail: false),
             FieldForm(
                 label: 'Email',
                 isPassword: false,
                 controller: controllerEmail,
-                isForm: false),
+                isForm: false,
+                isEmail: false),
             FieldForm(
                 label: 'Password',
                 isPassword: false,
                 controller: controllerPassword,
-                isForm: false),
+                isForm: false,
+                isEmail: false),
             SizedBox(
               width: double.infinity,
               child: TextButton(

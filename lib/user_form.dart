@@ -35,7 +35,17 @@ class _UserFormState extends State<UserForm> {
       );
     }
 
+    GlobalKey<FormState> _key = GlobalKey();
+
     void save() {
+      final isValidate = _key.currentState?.validate();
+
+      if (isValidate == false) {
+        return;
+      }
+
+      _key.currentState?.save();
+
       User user = User(
           name: controllerName.text,
           email: controllerEmail.text,
@@ -48,7 +58,7 @@ class _UserFormState extends State<UserForm> {
       } else {
         userProvider.users.insert(usersLength, user);
       }
-      Navigator.popAndPushNamed(context, '/list');
+      Navigator.popAndPushNamed(context, '/create');
     }
 
     return Scaffold(
@@ -65,30 +75,43 @@ class _UserFormState extends State<UserForm> {
         ],
       ),
       body: Center(
-        child: Column(
-          children: [
-            FieldForm(
-                label: 'Name', isPassword: false, controller: controllerName),
-            FieldForm(
-                label: 'Email', isPassword: false, controller: controllerEmail),
-            FieldForm(
+        child: Form(
+          key: _key,
+          child: Column(
+            children: [
+              FieldForm(
+                label: 'Name',
+                isPassword: false,
+                controller: controllerName,
+                isEmail: false,
+              ),
+              FieldForm(
+                label: 'Email',
+                isPassword: false,
+                controller: controllerEmail,
+                isEmail: true,
+              ),
+              FieldForm(
                 label: 'Password',
                 isPassword: true,
-                controller: controllerPassword),
-            SizedBox(
-              width: double.infinity,
-              child: TextButton(
-                onPressed: save,
-                child: Text(
-                  'Salvar',
-                  style: TextStyle(color: Colors.white),
-                ),
-                style: ButtonStyle(
-                    backgroundColor:
-                        WidgetStateProperty.all(Colors.deepPurple)),
+                controller: controllerPassword,
+                isEmail: false,
               ),
-            )
-          ],
+              SizedBox(
+                width: double.infinity,
+                child: TextButton(
+                  onPressed: save,
+                  child: Text(
+                    'Salvar',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  style: ButtonStyle(
+                      backgroundColor:
+                          WidgetStateProperty.all(Colors.deepPurple)),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
