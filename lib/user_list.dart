@@ -1,4 +1,4 @@
-import 'package:crud_app/provider.dart';
+import 'package:crud_app/user_provider.dart';
 import 'package:crud_app/user.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +16,7 @@ class UserList extends StatelessWidget {
         title: Text('User list'),
         leading: BackButton(
           onPressed: () {
+            userProvider.indexUser = null;
             Navigator.popAndPushNamed(context, '/create');
           },
         ),
@@ -30,6 +31,8 @@ class UserList extends StatelessWidget {
                     children: [
                       IconButton(
                           onPressed: () {
+                            userProvider.userSelected = users[indexBuilder];
+                            userProvider.indexUser = indexBuilder;
                             Navigator.popAndPushNamed(context, '/create');
                           },
                           icon: Icon(Icons.edit))

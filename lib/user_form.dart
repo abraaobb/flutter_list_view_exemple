@@ -1,5 +1,5 @@
 import 'package:crud_app/field_form.dart';
-import 'package:crud_app/provider.dart';
+import 'package:crud_app/user_provider.dart';
 import 'package:crud_app/user.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as dev;
@@ -12,15 +12,32 @@ class UserForm extends StatefulWidget {
 }
 
 class _UserFormState extends State<UserForm> {
+  String title = "Create user";
   TextEditingController controllerName = TextEditingController();
   TextEditingController controllerEmail = TextEditingController();
   TextEditingController controllerPassword = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    UserProvider userProvider = UserProvider.of(context) as UserProvider;
+
+    int? index;
+
+    if (userProvider.indexUser != null) {
+      index = userProvider.indexUser;
+      controllerName.text = userProvider.userSelected!.name;
+      controllerEmail.text = userProvider.userSelected!.email;
+      controllerPassword.text = userProvider.userSelected!.password;
+      setState(
+        () {
+          this.title = "Edit user";
+        },
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Create user'),
+        title: Text(title),
         actions: [
           Container(
             child: TextButton(
@@ -46,9 +63,6 @@ class _UserFormState extends State<UserForm> {
               width: double.infinity,
               child: TextButton(
                 onPressed: () {
-                  UserProvider userProvider =
-                      UserProvider.of(context) as UserProvider;
-
                   User user = User(
                       name: controllerName.text,
                       email: controllerEmail.text,
@@ -56,10 +70,11 @@ class _UserFormState extends State<UserForm> {
 
                   int usersLength = userProvider.users.length;
 
-                  userProvider.users.insert(usersLength, user);
-
-                  dev.log('entrei $userProvider');
-
+                  if (index != null) {
+                    userProvider.users[index] = user;
+                  } else {
+                    userProvider.users.insert(usersLength, user);
+                  }
                   Navigator.popAndPushNamed(context, '/list');
                 },
                 child: Text(
