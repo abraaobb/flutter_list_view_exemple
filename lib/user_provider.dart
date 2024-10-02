@@ -6,9 +6,7 @@ class UserProvider extends InheritedWidget {
   List<User> users = [];
   User? userSelected;
   int? indexUser;
-  UserProvider({
-    required this.child,
-  }) : super(child: child);
+  UserProvider({required this.child, super.key}) : super(child: child);
 
   static UserProvider? of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<UserProvider>();

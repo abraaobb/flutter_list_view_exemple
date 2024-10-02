@@ -27,7 +27,7 @@ class FieldForm extends StatelessWidget {
         if (value!.length < 5) {
           return 'Digite pelo menos 5 caracteres';
         }
-        if (this.isEmail && !value.contains("@")) {
+        if (isEmail && !value.contains("@")) {
           return 'Digite o email corretamente';
         }
       },

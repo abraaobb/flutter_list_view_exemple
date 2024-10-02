@@ -8,9 +8,9 @@ class ContainerAll extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: this.child,
-      margin: EdgeInsets.all(15),
-      padding: EdgeInsets.all(15),
-      decoration: BoxDecoration(color: Colors.lightBlue),
+      margin: const EdgeInsets.all(15),
+      padding: const EdgeInsets.all(15),
+      decoration: const BoxDecoration(color: Colors.lightBlue),
     );
   }
 }

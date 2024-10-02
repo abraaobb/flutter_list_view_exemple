@@ -34,7 +34,7 @@ class UserView extends StatelessWidget {
                 onPressed: () {
                   Navigator.popAndPushNamed(context, '/list');
                 },
-                child: Text('User list')),
+                child: const Text('User list')),
           )
         ],
       ),
@@ -65,12 +65,12 @@ class UserView extends StatelessWidget {
                 onPressed: () {
                   Navigator.popAndPushNamed(context, '/create');
                 },
-                child: Text(
+                style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.all(Colors.blue)),
+                child: const Text(
                   'Edit',
                   style: TextStyle(color: Colors.white),
                 ),
-                style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all(Colors.blue)),
               ),
             ),
             SizedBox(
@@ -81,12 +81,12 @@ class UserView extends StatelessWidget {
                   userProvider.users.removeAt(index!);
                   Navigator.popAndPushNamed(context, '/create');
                 },
-                child: Text(
+                style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.all(Colors.red)),
+                child: const Text(
                   'Delete',
                   style: TextStyle(color: Colors.white),
                 ),
-                style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all(Colors.red)),
               ),
             ),
           ],

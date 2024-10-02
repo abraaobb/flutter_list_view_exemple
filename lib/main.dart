@@ -5,7 +5,7 @@ import 'package:crud_app/user_view.dart';
 import 'package:flutter/material.dart';
 
 void main(List<String> args) {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -17,10 +17,10 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'CRUD APP',
         theme: ThemeData(),
-        home: UserForm(),
+        home: const UserForm(),
         routes: {
-          "/create": (_) => UserForm(),
-          "/list": (_) => UserList(),
+          "/create": (_) => const UserForm(),
+          "/list": (_) => const UserList(),
           "/view": (_) => UserView(),
         },
       ),

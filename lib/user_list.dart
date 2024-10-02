@@ -24,6 +24,8 @@ class UserList extends StatelessWidget {
       body: ListView.builder(
           itemCount: usersLength,
           itemBuilder: (BuildContext contextBuilder, indexBuilder) => Container(
+                decoration: const BoxDecoration(
+                    border: Border(bottom: BorderSide(width: 0.8))),
                 child: ListTile(
                   title: Text(users[indexBuilder].name),
                   trailing: Row(
@@ -35,14 +37,14 @@ class UserList extends StatelessWidget {
                             userProvider.indexUser = indexBuilder;
                             Navigator.popAndPushNamed(context, '/create');
                           },
-                          icon: Icon(Icons.edit)),
+                          icon: const Icon(Icons.edit)),
                       IconButton(
                           onPressed: () {
                             userProvider.userSelected = users[indexBuilder];
                             userProvider.indexUser = indexBuilder;
                             Navigator.popAndPushNamed(context, '/view');
                           },
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.visibility,
                             color: Colors.blue,
                           )),
@@ -52,15 +54,13 @@ class UserList extends StatelessWidget {
                             userProvider.users.removeAt(indexBuilder);
                             Navigator.popAndPushNamed(context, '/list');
                           },
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.delete,
                             color: Colors.red,
                           ))
                     ],
                   ),
                 ),
-                decoration: BoxDecoration(
-                    border: Border(bottom: BorderSide(width: 0.8))),
               )),
     );
   }
